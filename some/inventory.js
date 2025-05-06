@@ -386,3 +386,32 @@ function manualEdit(){ alert("Manual edit modal coming soon!"); }
 function goBack(){ window.location.href="homepage.html"; }
 function generateReport(){ window.location.href="inventory-report.html"; }
 
+
+// === 11. Theme toggle === 
+function setupThemeToggle() {
+  const toggleButton = document.getElementById("toggleTheme");
+  if (!toggleButton) return;
+
+  const body = document.body;
+  const isDarkMode = localStorage.getItem("darkMode") === "enabled";
+
+  if (isDarkMode) {
+    body.classList.add("dark-mode");
+    toggleButton.innerHTML = '<i class="fas fa-moon"></i>';
+  } else {
+    toggleButton.innerHTML = '<i class="fas fa-sun"></i>';
+  }
+
+  toggleButton.addEventListener("click", () => {
+    body.classList.toggle("dark-mode");
+    const currentMode = localStorage.getItem("darkMode");
+    const newMode = currentMode === "enabled" ? "disabled" : "enabled";
+    localStorage.setItem("darkMode", newMode);
+
+    if (newMode === "enabled") {
+      toggleButton.innerHTML = '<i class="fas fa-moon"></i>';
+    } else {
+      toggleButton.innerHTML = '<i class="fas fa-sun"></i>';
+    }
+  });
+}
